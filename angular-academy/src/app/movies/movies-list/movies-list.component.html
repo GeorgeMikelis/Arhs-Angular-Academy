@@ -1,0 +1,18 @@
+<ul >
+  <li *ngFor="let movie of movies " (click)="movieSelected.emit(movie.title)" appMovieHighlighter>
+    {{ movie.title }}
+  </li>
+</ul>
+
+<app-movie-item (buttonClicked)="buttonClicked = $event"></app-movie-item>
+
+{{ buttonClicked }}
+
+<div *ngIf="buttonClicked">
+  <hr/>
+  <div>
+    From MoviesListComponent: A button from the movie-item component was clicked
+  </div>
+</div>
+
+
