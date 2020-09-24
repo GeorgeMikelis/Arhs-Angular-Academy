@@ -1,4 +1,4 @@
-<input #input/>
+<input #input />
 <button type="button" (click)="onSearch(input.value)">Search</button>
 
 <app-movies-list
@@ -7,14 +7,12 @@
 ></app-movies-list>
 
 <div *ngIf="buttonWasClicked">
-  <hr/>
+  <hr />
   <div>
-    From AppComponent: A button from the movie-item component was clicked
+    From AppComponent: A button from the movie-item component was clicked!
   </div>
 </div>
 
 <app-movie-details
   [selectedMovieTitle]="selectedMovieTitle"
 ></app-movie-details>
-
-
