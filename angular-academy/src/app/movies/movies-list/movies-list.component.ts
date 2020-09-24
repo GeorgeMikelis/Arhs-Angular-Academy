@@ -14,6 +14,9 @@ import { Movie } from './movie';
 })
 export class MoviesListComponent implements OnInit {
   private _buttonClicked: boolean;
+  public _movieToSearch: string;
+
+  movieFound: boolean = false;
 
   movies: Movie[] = [
     { title: 'Inception' },
@@ -23,12 +26,22 @@ export class MoviesListComponent implements OnInit {
   ];
 
   @Input()
-  set buttonClicked(value: boolean){
+  set buttonClicked(value: boolean) {
     this._buttonClicked = value;
     this.buttonWasClicked.emit(value);
   }
   get buttonClicked(): boolean {
    return this._buttonClicked;
+  }
+
+  @Input()
+  set movieToSearch(value: string) {
+    this._movieToSearch = value;
+    for (let movie of this.movies) {
+      if (movie.title.toUpperCase() === this._movieToSearch.toUpperCase()) {
+        this.movieFound = true;
+      }
+    }
   }
 
   @Output()

@@ -1,12 +1,29 @@
-<ul >
+<ul *ngIf="!_movieToSearch">
   <li *ngFor="let movie of movies " (click)="movieSelected.emit(movie.title)" appMovieHighlighter>
     {{ movie.title }}
   </li>
 </ul>
 
+<div *ngIf="_movieToSearch && movieFound">
+  <ul>
+    <li (click)="movieSelected.emit(_movieToSearch)" appMovieHighlighter>
+        {{ _movieToSearch}}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="_movieToSearch && !movieFound">
+  Sorry, there is not such movie in the list!
+</div>
+
+
+
+
 <app-movie-item (buttonClicked)="buttonClicked = $event"></app-movie-item>
 
 {{ buttonClicked }}
+
+{{ movieToSearch }}
 
 <div *ngIf="buttonClicked">
   <hr/>

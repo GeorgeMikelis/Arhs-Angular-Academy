@@ -1,7 +1,8 @@
 <input #input />
-<button type="button" (click)="onSearch(input.value)">Search</button>
+<button type="button" (click)="userInput.emit(input.value)">Search</button>
 
 <app-movies-list
+  [movieToSearch]="input.value"
   (movieSelected)="selectedMovieTitle = $event"
   (buttonWasClicked)="buttonWasClicked = $event"
 ></app-movies-list>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,13 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-academy';
-  userInput: string;
+
+  @Output()
+  userInput = new EventEmitter<any>();
 
   @Input()
   selectedMovieTitle: string;
 
   @Input()
   buttonWasClicked: boolean;
-
-  onSearch(eventData: any) {
-    console.log(eventData);
-    this.userInput = eventData;
-  }
 }
