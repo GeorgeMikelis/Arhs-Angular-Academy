@@ -2,8 +2,10 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { Movie } from './movie';
 
@@ -12,9 +14,11 @@ import { Movie } from './movie';
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css'],
 })
-export class MoviesListComponent implements OnInit {
-  private _buttonClicked: boolean;
-  public _movieToSearch: string;
+export class MoviesListComponent implements OnInit, OnChanges {
+
+  timesOnChangedCalled: number = 1;
+
+  movieToSearch: string = '';
 
   movieFound: boolean = false;
 
@@ -26,26 +30,7 @@ export class MoviesListComponent implements OnInit {
   ];
 
   @Input()
-  set buttonClicked(value: boolean) {
-    this._buttonClicked = value;
-    this.buttonWasClicked.emit(value);
-  }
-  get buttonClicked(): boolean {
-   return this._buttonClicked;
-  }
-
-  @Input()
-  set movieToSearch(value: string) {
-    this._movieToSearch = value;
-    for (let movie of this.movies) {
-      if (movie.title.toUpperCase() === this._movieToSearch.toUpperCase()) {
-        this.movieFound = true;
-      }
-    }
-  }
-
-  @Output()
-  buttonWasClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
+  movieGiven: string;
 
   @Output()
   movieSelected = new EventEmitter();
@@ -53,4 +38,20 @@ export class MoviesListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    if (this.timesOnChangedCalled > 2){      // my custom work around: allazw thn timh tou movieToSearch mono ap thn 2h fora pou trexei h onChanges kathws prin
+      this.movieToSearch = this.movieGiven;   // dwsei timh o xrhsths to movieToSearch den einai empty string alla object typoy EventEmitter_
+        for (let movie of this.movies) {
+          if (movie.title.toUpperCase() === this.movieToSearch.toUpperCase()) {
+            this.movieFound = true;
+          }
+        }
+    }
+    console.log('on changes fired');
+    console.log(changes);
+    console.log(this.movieToSearch);
+    this.timesOnChangedCalled++;
+  }
 }

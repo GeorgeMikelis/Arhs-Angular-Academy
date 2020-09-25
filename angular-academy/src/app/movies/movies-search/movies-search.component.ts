@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-movies-search',
@@ -12,4 +12,6 @@ export class MoviesSearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Output()
+  userInput = new EventEmitter<any>();
 }

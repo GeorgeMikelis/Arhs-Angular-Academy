@@ -1,18 +1,10 @@
-<input #input />
-<button type="button" (click)="userInput.emit(input.value)">Search</button>
+<app-movies-search (userInput)="userInput = $event"></app-movies-search>
 
 <app-movies-list
-  [movieToSearch]="input.value"
+  [movieGiven]="userInput"
   (movieSelected)="selectedMovieTitle = $event"
-  (buttonWasClicked)="buttonWasClicked = $event"
 ></app-movies-list>
 
-<div *ngIf="buttonWasClicked">
-  <hr />
-  <div>
-    From AppComponent: A button from the movie-item component was clicked!
-  </div>
-</div>
 
 <app-movie-details
   [selectedMovieTitle]="selectedMovieTitle"
