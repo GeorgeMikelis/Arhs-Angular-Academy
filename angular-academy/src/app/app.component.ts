@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { Movie } from './movies/movies-list/movie';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,8 +12,8 @@ export class AppComponent {
   movieToSearch: string;
 
   @Output()
-  userInput = new EventEmitter<any>();
+  userInput = new EventEmitter<string>();
 
   @Input()
-  selectedMovieTitle: string;
+  selectedMovie: Movie;
 }

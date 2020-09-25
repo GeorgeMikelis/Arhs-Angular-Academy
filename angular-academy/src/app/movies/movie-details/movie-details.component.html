@@ -1,7 +1,7 @@
-<article *ngIf="selectedMovieTitle">
-  <h2>Favourite Movie</h2>
+<article *ngIf="movieDetails">
+  <h2>Movie Details</h2>
 
-  {{ selectedMovieTitle }}
+  {{ movieDetails.title }} was released in {{ movieDetails.yearRelease }}
 </article>
 
 

@@ -1,4 +1,4 @@
 export interface Movie {
   title: string,
-  dateRelease?: string
+  yearRelease?: number
 }

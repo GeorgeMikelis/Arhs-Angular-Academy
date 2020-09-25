@@ -2,10 +2,7 @@
 
 <app-movies-list
   [movieGiven]="userInput"
-  (movieSelected)="selectedMovieTitle = $event"
+  (movieToDetails)="selectedMovie = $event"
 ></app-movies-list>
 
-
-<app-movie-details
-  [selectedMovieTitle]="selectedMovieTitle"
-></app-movie-details>
+<app-movie-details [movieDetails]="selectedMovie"></app-movie-details>

@@ -1,28 +1,17 @@
-<ul *ngIf="!movieToSearch">
-  <li *ngFor="let movie of movies " (click)="movieSelected.emit(movie.title)" appMovieHighlighter>
-    {{ movie.title }}
-  </li>
+<ul *ngIf="isEventEmiter(movieToSearch) || movieToSearch === ''">
+  <app-movie-item
+    *ngFor="let movie of movies"
+    [movie]="movie"
+    (movieSelected)="movieWasSelected = $event"
+  ></app-movie-item>
 </ul>
 
-<div *ngIf="movieToSearch && movieFound">
+<div *ngIf="movieFound">
   <ul>
-    <li (click)="movieSelected.emit(movieToSearch)" appMovieHighlighter>
-        {{ movieToSearch }}
-    </li>
+    <app-movie-item [movie] = "movies[this.movieKey]" (movieSelected)="movieWasSelected = $event"></app-movie-item>
   </ul>
 </div>
 
-<div *ngIf="movieToSearch && !movieFound">
+<div *ngIf="!isEventEmiter(movieToSearch) && !movieFound && !(movieToSearch ==='')">
   Sorry, there is not such movie in the list!
 </div>
-
-
-
-
-<app-movie-item></app-movie-item>
-
-
-{{ movieToSearch }}
-
-
-

@@ -1,12 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { Movie } from './movie';
 
 @Component({
@@ -14,44 +7,52 @@ import { Movie } from './movie';
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css'],
 })
-export class MoviesListComponent implements OnInit, OnChanges {
+export class MoviesListComponent implements OnInit {
+  movieKey: number;
 
-  timesOnChangedCalled: number = 1;
+  timesSeterCalled: number = 1;
 
   movieToSearch: string = '';
 
   movieFound: boolean = false;
 
   movies: Movie[] = [
-    { title: 'Inception' },
-    { title: 'Lord Of The Rings' },
-    { title: 'Avengers' },
-    { title: 'Batman' },
+    { title: 'Inception', yearRelease: 2010 },
+    { title: 'Lord Of The Rings', yearRelease: 2001 },
+    { title: 'Avengers', yearRelease: 2012 },
+    { title: 'Batman Begins', yearRelease: 2005 },
   ];
 
   @Input()
-  movieGiven: string;
+  set movieWasSelected(value: Movie) {
+    this.movieToDetails.emit(value);
+  }
+
+  @Input()
+  set movieGiven(value: string) {
+    this.movieToSearch = value;
+    let counter = 0;
+    for (let movie of this.movies) {
+      if ( movie.title.toString().toUpperCase() === this.movieToSearch.toString().toUpperCase() ) {
+        this.movieFound = true;
+        this.movieKey = counter;
+      }
+      counter++;
+    }
+  }
 
   @Output()
-  movieSelected = new EventEmitter();
+  movieToDetails = new EventEmitter<Movie>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges) {
-
-    if (this.timesOnChangedCalled > 2){      // my custom work around: allazw thn timh tou movieToSearch mono ap thn 2h fora pou trexei h onChanges kathws prin
-      this.movieToSearch = this.movieGiven;   // dwsei timh o xrhsths to movieToSearch den einai empty string alla object typoy EventEmitter_
-        for (let movie of this.movies) {
-          if (movie.title.toUpperCase() === this.movieToSearch.toUpperCase()) {
-            this.movieFound = true;
-          }
-        }
+  isEventEmiter(val): boolean {
+    if (typeof val === 'object') {
+      return true;
+    } else {
+      return false;
     }
-    console.log('on changes fired');
-    console.log(changes);
-    console.log(this.movieToSearch);
-    this.timesOnChangedCalled++;
   }
 }
