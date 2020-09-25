@@ -6,7 +6,7 @@
   ></app-movie-item>
 </ul>
 
-<div *ngIf="movieFound">
+<div *ngIf="movieFound && !(movieToSearch === '')">
   <ul>
     <app-movie-item [movie] = "movies[this.movieKey]" (movieSelected)="movieWasSelected = $event"></app-movie-item>
   </ul>

@@ -14,7 +14,7 @@ export class MoviesListComponent implements OnInit {
 
   movieToSearch: string = '';
 
-  movieFound: boolean = false;
+  movieFound: boolean;
 
   movies: Movie[] = [
     { title: 'Inception', yearRelease: 2010 },
@@ -30,6 +30,7 @@ export class MoviesListComponent implements OnInit {
 
   @Input()
   set movieGiven(value: string) {
+    this.movieFound = false;
     this.movieToSearch = value;
     let counter = 0;
     for (let movie of this.movies) {
