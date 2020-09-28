@@ -6,12 +6,29 @@
   ></app-movie-item>
 </ul>
 
-<div *ngIf="movieFound && !(movieToSearch === '')">
-  <ul>
-    <app-movie-item [movie] = "movies[this.movieKey]" (movieSelected)="movieWasSelected = $event"></app-movie-item>
+<div *ngIf="criteria.featured == true">
+  <ul *ngIf="isEventEmiter(movieToSearch) || movieToSearch === ''">
+    <app-movie-item
+      *ngFor="let movie of featuredMovies"
+      [movie]="movie"
+      (movieSelected)="movieWasSelected = $event"
+    ></app-movie-item>
   </ul>
 </div>
 
-<div *ngIf="!isEventEmiter(movieToSearch) && !movieFound && !(movieToSearch ==='')">
+<div *ngIf="movieFound && !(movieToSearch === '')">
+  <ul>
+    <app-movie-item
+      [movie]="movies[this.movieKey]"
+      (movieSelected)="movieWasSelected = $event"
+    ></app-movie-item>
+  </ul>
+</div>
+
+<div
+  *ngIf="
+    !isEventEmiter(movieToSearch) && !movieFound && !(movieToSearch === '')
+  "
+>
   Sorry, there is not such movie in the list!
 </div>
