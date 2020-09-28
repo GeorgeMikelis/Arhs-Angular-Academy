@@ -12,8 +12,11 @@ export class MoviesListComponent implements OnInit {
   @Input()
   criteria: {featured: boolean};
 
+  movies: Movie[];
+
   ngOnInit(): void {
     this.criteria.featured = false;
+    this.movies = this.dBService.getMovies(this.criteria);
   }
 
   @Input("criteria")
@@ -26,7 +29,6 @@ export class MoviesListComponent implements OnInit {
 
   movieFound: boolean;
 
-  movies: Movie[] = this.dBService.getMovies(this.criteria);
 
   @Input()
   set movieWasSelected(value: Movie) {
