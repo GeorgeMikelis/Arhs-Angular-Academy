@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DbService } from 'src/app/services/db.service';
 
 import { Movie } from './movie';
 
@@ -8,6 +9,9 @@ import { Movie } from './movie';
   styleUrls: ['./movies-list.component.css'],
 })
 export class MoviesListComponent implements OnInit {
+  @Input("criteria")
+  criteria: { featured: false };
+
   movieKey: number;
 
   timesSeterCalled: number = 1;
@@ -16,12 +20,15 @@ export class MoviesListComponent implements OnInit {
 
   movieFound: boolean;
 
-  movies: Movie[] = [
-    { title: 'Inception', yearRelease: 2010 },
-    { title: 'Lord Of The Rings', yearRelease: 2001 },
-    { title: 'Avengers', yearRelease: 2012 },
-    { title: 'Batman Begins', yearRelease: 2005 },
-  ];
+  // movies: Movie[] = [
+  //   { title: 'Inception', yearRelease: 2010 },
+  //   { title: 'Lord Of The Rings', yearRelease: 2001 },
+  //   { title: 'Avengers', yearRelease: 2012 },
+  //   { title: 'Batman Begins', yearRelease: 2005 },
+  // ];
+
+  movies: Movie[] = this.dBService.getAllMovies();
+  featuredMovies: Movie[] = this.dBService.getFeaturedMovies();
 
   @Input()
   set movieWasSelected(value: Movie) {
@@ -45,7 +52,7 @@ export class MoviesListComponent implements OnInit {
   @Output()
   movieToDetails = new EventEmitter<Movie>();
 
-  constructor() {}
+  constructor(private dBService: DbService) {}
 
   ngOnInit(): void {}
 
