@@ -9,8 +9,13 @@ import { Movie } from './movie';
   styleUrls: ['./movies-list.component.css'],
 })
 export class MoviesListComponent implements OnInit {
+  criteria: {featured: boolean};
+
+  ngOnInit(): void {
+    this.criteria.featured = false;
+  }
+
   @Input("criteria")
-  criteria: { featured: false };
 
   movieKey: number;
 
@@ -20,7 +25,7 @@ export class MoviesListComponent implements OnInit {
 
   movieFound: boolean;
 
-  movies: Movie[] = this.dBService.getMovies(this.criteria.featured);
+  movies: Movie[] = this.dBService.getMovies(this.criteria);
 
   @Input()
   set movieWasSelected(value: Movie) {
@@ -46,7 +51,6 @@ export class MoviesListComponent implements OnInit {
 
   constructor(private dBService: DbService) {}
 
-  ngOnInit(): void {}
 
   isEventEmiter(val): boolean {
     if (typeof val === 'object') {
