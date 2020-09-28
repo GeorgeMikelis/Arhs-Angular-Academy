@@ -9,17 +9,15 @@ import { Movie } from './movie';
   styleUrls: ['./movies-list.component.css'],
 })
 export class MoviesListComponent implements OnInit {
-  @Input()
-  criteria: {featured: boolean};
+  @Input('criteria')
+  criteria;
 
   movies: Movie[];
 
   ngOnInit(): void {
     this.criteria.featured = false;
-    this.movies = this.dBService.getMovies(this.criteria);
+    this.movies = this.dBService.getMovies(this.criteria.featured);
   }
-
-  @Input("criteria")
 
   movieKey: number;
 
@@ -28,7 +26,6 @@ export class MoviesListComponent implements OnInit {
   movieToSearch: string = '';
 
   movieFound: boolean;
-
 
   @Input()
   set movieWasSelected(value: Movie) {
@@ -41,7 +38,10 @@ export class MoviesListComponent implements OnInit {
     this.movieToSearch = value;
     let counter = 0;
     for (let movie of this.movies) {
-      if ( movie.title.toString().toUpperCase() === this.movieToSearch.toString().toUpperCase() ) {
+      if (
+        movie.title.toString().toUpperCase() ===
+        this.movieToSearch.toString().toUpperCase()
+      ) {
         this.movieFound = true;
         this.movieKey = counter;
       }
@@ -53,7 +53,6 @@ export class MoviesListComponent implements OnInit {
   movieToDetails = new EventEmitter<Movie>();
 
   constructor(private dBService: DbService) {}
-
 
   isEventEmiter(val): boolean {
     if (typeof val === 'object') {
