@@ -9,6 +9,7 @@ import { Movie } from './movie';
   styleUrls: ['./movies-list.component.css'],
 })
 export class MoviesListComponent implements OnInit {
+  @Input()
   criteria: {featured: boolean};
 
   ngOnInit(): void {
