@@ -20,13 +20,6 @@ export class MoviesListComponent implements OnInit {
 
   movieFound: boolean;
 
-  // movies: Movie[] = [
-  //   { title: 'Inception', yearRelease: 2010 },
-  //   { title: 'Lord Of The Rings', yearRelease: 2001 },
-  //   { title: 'Avengers', yearRelease: 2012 },
-  //   { title: 'Batman Begins', yearRelease: 2005 },
-  // ];
-
   movies: Movie[] = this.criteria.featured? this.dBService.getFeaturedMovies : this.dBService.getAllMovies();
 
   @Input()
