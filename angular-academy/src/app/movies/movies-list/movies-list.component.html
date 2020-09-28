@@ -6,7 +6,7 @@
   ></app-movie-item>
 </ul>
 
-<div *ngIf="criteria.featured == true">
+<div *ngIf="criteria.featured">
   <ul *ngIf="isEventEmiter(movieToSearch) || movieToSearch === ''">
     <app-movie-item
       *ngFor="let movie of featuredMovies"

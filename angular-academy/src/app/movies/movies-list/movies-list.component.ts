@@ -27,8 +27,7 @@ export class MoviesListComponent implements OnInit {
   //   { title: 'Batman Begins', yearRelease: 2005 },
   // ];
 
-  movies: Movie[] = this.dBService.getAllMovies();
-  featuredMovies: Movie[] = this.dBService.getFeaturedMovies();
+  movies: Movie[] = this.criteria.featured? this.dBService.getFeaturedMovies : this.dBService.getAllMovies();
 
   @Input()
   set movieWasSelected(value: Movie) {
