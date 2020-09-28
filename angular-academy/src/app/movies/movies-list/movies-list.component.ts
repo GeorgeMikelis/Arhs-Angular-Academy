@@ -20,7 +20,7 @@ export class MoviesListComponent implements OnInit {
 
   movieFound: boolean;
 
-  movies: Movie[] = this.criteria.featured? this.dBService.getFeaturedMovies : this.dBService.getAllMovies();
+  movies: Movie[] = this.dBService.getMovies(this.criteria.featured);
 
   @Input()
   set movieWasSelected(value: Movie) {

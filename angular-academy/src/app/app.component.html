@@ -6,9 +6,9 @@
 ></app-movies-list>
 
 <app-movies-list
+[criteria]="{featured: true}"
   [movieGiven]="userInput"
   (movieToDetails)="selectedMovie = $event"
-  [criteria]="{featured: true}"
 ></app-movies-list>
 
 <app-movie-details [movieDetails]="selectedMovie"></app-movie-details>

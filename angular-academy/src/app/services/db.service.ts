@@ -9,14 +9,14 @@ import { Movie } from '../movies/movies-list/movie';
 export class DbService {
   constructor() {}
 
-  getAllMovies(): Movie[] {
-    return Movies.movies;
-  }
-
-  getFeaturedMovies() {
-    let mov: Movie[] = Movies.movies.filter(movie => {
-      return movie.featured === true;
-    })
-    return mov;
+  getMovies(criteria: { featured: boolean }) {
+    if (criteria.featured) {
+      let mov: Movie[] = Movies.movies.filter(movie => {
+        return movie.featured === true;
+      })
+      return mov;
+    } else {
+      return Movies.movies;
+    }
   }
 }
