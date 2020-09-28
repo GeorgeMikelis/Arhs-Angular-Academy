@@ -9,7 +9,7 @@ import { Movie } from '../movies/movies-list/movie';
 export class DbService {
   constructor() {}
 
-  getMovies(criteria: { featured: boolean }) {
+  getMovies(criteria: { featured: boolean }) : Movie[] {
     if (criteria.featured) {
       let mov: Movie[] = Movies.movies.filter(movie => {
         return movie.featured === true;
