@@ -1,64 +1,51 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DbService } from 'src/app/services/db.service';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
-import { Movie } from './movie';
+import { MoviesService } from '../movies.service';
+import { Movie } from '../movie';
+import { Criteria } from '../criteria';
 
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css'],
 })
-export class MoviesListComponent implements OnInit {
-  @Input()
-  featured: boolean
-
+export class MoviesListComponent implements OnInit, OnChanges {
+  movieList: string;
+  selectedMovie: Movie;
   movies: Movie[];
 
-  ngOnInit(): void {
-    this.featured = false;
-    this.movies = this.dBService.getMovies(this.featured);
-  }
-
-  movieKey: number;
-
-  timesSeterCalled: number = 1;
-
-  movieToSearch: string = '';
-
-  movieFound: boolean;
+  constructor(private movService: MoviesService) {}
 
   @Input()
-  set movieWasSelected(value: Movie) {
-    this.movieToDetails.emit(value);
-  }
+  criteria: Criteria = { featured: false };
 
   @Input()
-  set movieGiven(value: string) {
-    this.movieFound = false;
-    this.movieToSearch = value;
-    let counter = 0;
-    for (let movie of this.movies) {
-      if (
-        movie.title.toString().toUpperCase() ===
-        this.movieToSearch.toString().toUpperCase()
-      ) {
-        this.movieFound = true;
-        this.movieKey = counter;
-      }
-      counter++;
-    }
-  }
+  searchValue: string;
 
   @Output()
   movieToDetails = new EventEmitter<Movie>();
 
-  constructor(private dBService: DbService) {}
+  ngOnInit(): void {
+    this.movieList = this.criteria.featured ? "Featured Movies:" : "All Movies";
+    this.movies = this.movService.getMovies(this.criteria);
+  }
 
-  isEventEmiter(val): boolean {
-    if (typeof val === 'object') {
-      return true;
+  ngOnChanges(changes: SimpleChanges) {
+    this.movies = this.movService.getMovies(this.criteria);
+    console.log(changes);
+    const filterValue: string = changes.searchValue?.currentValue;
+    if (filterValue && filterValue.length) {
+      this.movies = [...this.movies.filter(movie => movie.title.toLowerCase().includes(filterValue))];
     } else {
-      return false;
+      this.movies = this.movService.getMovies(this.criteria);
     }
+    console.log(this.movies)
+    //resets the selected movie when a search is done - Optional
+    this.emitSelectedMovie(null)
+  }
+
+  emitSelectedMovie(movie: Movie) {
+    this.selectedMovie = movie;
+    this.movieToDetails.emit(movie)
   }
 }

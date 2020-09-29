@@ -1,24 +1,12 @@
-<ul *ngIf="isEventEmiter(movieToSearch) || movieToSearch === ''">
+<h3>{{ movieList }}</h3>
+
+<ul *ngIf="movies && movies.length">
   <app-movie-item
     *ngFor="let movie of movies"
     [movie]="movie"
-    (movieSelected)="movieWasSelected = $event"
-  ></app-movie-item>
+    (movieSelected)="emitSelectedMovie($event)"
+  >
+  </app-movie-item>
 </ul>
 
-<div *ngIf="movieFound && !(movieToSearch === '')">
-  <ul>
-    <app-movie-item
-      [movie]="movies[this.movieKey]"
-      (movieSelected)="movieWasSelected = $event"
-    ></app-movie-item>
-  </ul>
-</div>
-
-<div
-  *ngIf="
-    !isEventEmiter(movieToSearch) && !movieFound && !(movieToSearch === '')
-  "
->
-  Sorry, there is not such movie in the list!
-</div>
+<div *ngIf="!movies.length">Sorry, there is not such movie in this list!</div>

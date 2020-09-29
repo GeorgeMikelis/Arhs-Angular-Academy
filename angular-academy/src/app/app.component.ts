@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Movie } from './movies/movies-list/movie';
+import { Movie } from './movies/movie';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,17 @@ import { Movie } from './movies/movies-list/movie';
 })
 export class AppComponent {
   title = 'angular-academy';
-  movieToSearch: string;
+  movieSearchValue: string;
 
-  @Output()
-  userInput = new EventEmitter<string>();
-
-  @Input()
   selectedMovie: Movie;
+
+  handleInput(value: string) {
+    console.log(value);
+    this.movieSearchValue = value;
+  }
+
+  selectMovie(movie: Movie) {
+    console.log(movie);
+    this.selectedMovie = movie;
+  }
 }

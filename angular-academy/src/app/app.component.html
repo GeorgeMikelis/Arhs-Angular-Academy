@@ -1,14 +1,12 @@
-<app-movies-search (userInput)="userInput = $event"></app-movies-search>
+<app-movies-search (userInput)="handleInput($event)"></app-movies-search>
 
 <app-movies-list
-  [movieGiven]="userInput"
-  (movieToDetails)="selectedMovie = $event"
-></app-movies-list>
+[searchValue]="movieSearchValue"
+(movieToDetails)="selectMovie($event)"></app-movies-list>
 
 <app-movies-list
-  [featured]="true"
-  [movieGiven]="userInput"
-  (movieToDetails)="selectedMovie = $event"
-></app-movies-list>
+[searchValue]="movieSearchValue"
+[criteria]="{ featured: true }"
+(movieToDetails)="selectMovie($event)"></app-movies-list>
 
 <app-movie-details [movieDetails]="selectedMovie"></app-movie-details>
