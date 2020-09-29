@@ -10,13 +10,13 @@ import { Movie } from './movie';
 })
 export class MoviesListComponent implements OnInit {
   @Input()
-  criteria;
+  featured: boolean
 
   movies: Movie[];
 
   ngOnInit(): void {
-    this.criteria.featured = false;
-    this.movies = this.dBService.getMovies(this.criteria.featured);
+    this.featured = false;
+    this.movies = this.dBService.getMovies(this.featured);
   }
 
   movieKey: number;
