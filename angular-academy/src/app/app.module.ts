@@ -4,6 +4,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,9 +13,10 @@ import { MoviesModule } from './movies/movies.module';
   imports: [
     BrowserModule,
     MoviesModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    AppRoutingModule
   ],
-  exports: [NgxPaginationModule],
+  exports: [NgxPaginationModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
