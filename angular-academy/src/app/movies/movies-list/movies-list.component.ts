@@ -18,6 +18,9 @@ export class MoviesListComponent implements OnInit, OnChanges {
   constructor(private movService: MoviesService) {}
 
   @Input()
+  sortOption;
+
+  @Input()
   criteria: Criteria = { featured: false };
 
   @Input()
@@ -40,9 +43,10 @@ export class MoviesListComponent implements OnInit, OnChanges {
     } else {
       this.movies = this.movService.getMovies(this.criteria);
     }
-    console.log(this.movies)
+    console.log(this.movies);
     //resets the selected movie when a search is done - Optional
-    this.emitSelectedMovie(null)
+    this.emitSelectedMovie(null);
+    console.log(this.sortOption);
   }
 
   emitSelectedMovie(movie: Movie) {
