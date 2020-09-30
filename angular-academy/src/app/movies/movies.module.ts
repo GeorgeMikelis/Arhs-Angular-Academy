@@ -6,6 +6,8 @@ import { MovieHighlighterDirective } from './movie-highlighter.directive';
 import { MovieItemComponent } from './movies-list/movie-item/movie-item.component';
 import { MoviesSearchComponent } from './movies-search/movies-search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FirstComponentComponent } from './test-components/first-component.component';
+
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MovieHighlighterDirective,
     MovieItemComponent,
     MoviesSearchComponent,
+    FirstComponentComponent,
   ],
   imports: [CommonModule, NgxPaginationModule],
   providers: [],
