@@ -14,6 +14,7 @@ import { MoviesModule } from './movies/movies.module';
     MoviesModule,
     NgxPaginationModule
   ],
+  exports: [NgxPaginationModule],
   providers: [],
   bootstrap: [AppComponent]
 })

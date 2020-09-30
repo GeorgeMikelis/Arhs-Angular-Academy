@@ -2,11 +2,13 @@
 
 <ul *ngIf="movies && movies.length">
   <app-movie-item
-    *ngFor="let movie of movies"
+    *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }"
     [movie]="movie"
     (movieSelected)="emitSelectedMovie($event)"
   >
   </app-movie-item>
 </ul>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 <div *ngIf="!movies.length">Sorry, there is not such movie in this list!</div>

@@ -13,6 +13,7 @@ export class MoviesListComponent implements OnInit, OnChanges {
   movieList: string;
   selectedMovie: Movie;
   movies: Movie[];
+  p: number = 1;
 
   constructor(private movService: MoviesService) {}
 
@@ -26,7 +27,7 @@ export class MoviesListComponent implements OnInit, OnChanges {
   movieToDetails = new EventEmitter<Movie>();
 
   ngOnInit(): void {
-    this.movieList = this.criteria.featured ? "Featured Movies:" : "All Movies";
+    this.movieList = this.criteria.featured ? "Featured Movies:" : "All Movies:";
     this.movies = this.movService.getMovies(this.criteria);
   }
 
