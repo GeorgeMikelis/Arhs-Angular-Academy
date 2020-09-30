@@ -1,12 +1,20 @@
-<app-movies-search (userInput)="handleInput($event)"></app-movies-search>
+<div class="row">
+  <div class="col-xs-12 col-md-12 col-md-offset-1" style="">
+    <app-movies-search (userInput)="handleInput($event)"></app-movies-search>
 
-<app-movies-list
-[searchValue]="movieSearchValue"
-(movieToDetails)="selectMovie($event)"></app-movies-list>
+    <hr />
 
-<app-movies-list
-[searchValue]="movieSearchValue"
-[criteria]="{ featured: true }"
-(movieToDetails)="selectMovie($event)"></app-movies-list>
+    <app-movies-list
+      [searchValue]="movieSearchValue"
+      (movieToDetails)="selectMovie($event)"
+    ></app-movies-list>
 
-<app-movie-details [movieDetails]="selectedMovie"></app-movie-details>
+    <app-movies-list
+      [searchValue]="movieSearchValue"
+      [criteria]="{ featured: true }"
+      (movieToDetails)="selectMovie($event)"
+    ></app-movies-list>
+
+    <app-movie-details [movieDetails]="selectedMovie"></app-movie-details>
+  </div>
+</div>

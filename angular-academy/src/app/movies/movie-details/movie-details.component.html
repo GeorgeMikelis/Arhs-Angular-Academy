@@ -1,8 +1,10 @@
 <article *ngIf="movieDetails">
-  <h2>Movie Details</h2>
-
-  {{ movieDetails.title }} was released in {{ movieDetails.yearRelease }}
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Movie Details</h2>
+      <p>
+        {{ movieDetails.title }} was released in {{ movieDetails.yearRelease }}
+      </p>
+    </div>
+  </div>
 </article>
-
-
-

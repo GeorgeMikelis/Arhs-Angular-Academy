@@ -1,2 +1,14 @@
-<input #input />
-<button type="button" (click)="userInput.emit(input.value)">Search</button>
+<div class="row" style="margin: 10px;">
+  <div class="col-md-3">
+    <div class="form-group">
+      <input #input class="form-control"/>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-primary" (click)="userInput.emit(input.value)">Search</button>
+
+  </div>
+</div>
+
+
+

@@ -1,13 +1,33 @@
-<h3>{{ movieList }}</h3>
+<div class="row">
+  <div class="col-md-3">
+    <h3>{{ movieList }}</h3>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <select class="form-control" name="cars" id="cars">
+        <option selected disabled value="date">Order By</option>
+        <option value="date">Date Order</option>
+        <option value="alphabetical">Alphabetical Order</option>
+      </select>
+    </div>
+  </div>
+</div>
 
-<ul *ngIf="movies && movies.length">
-  <app-movie-item
-    *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }"
-    [movie]="movie"
-    (movieSelected)="emitSelectedMovie($event)"
-  >
-  </app-movie-item>
-</ul>
+<div class="row">
+  <div class="col-md-5">
+    <ul class="list-group" *ngIf="movies && movies.length">
+      <app-movie-item
+
+        *ngFor="let movie of movies | paginate: { itemsPerPage: 10, currentPage: p }"
+        [movie]="movie"
+        (movieSelected)="emitSelectedMovie($event)"
+      >
+      </app-movie-item>
+    </ul>
+  </div>
+</div>
+
+
 
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
