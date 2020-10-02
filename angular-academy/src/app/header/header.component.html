@@ -1,8 +1,9 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/all-movies" routerLinkActive="active">All Movies</a>
-      <a class="navbar-brand" routerLink="/featured-movies" routerLinkActive="active">Featured Movies</a>
+      <a class="navbar-brand" routerLink="/first-component" routerLinkActive="active">First Component</a>
+      <a class="navbar-brand" [routerLink]="['/first-component', {hardCoded: false }]">First With Params</a>
+      <a class="navbar-brand" routerLink="/second-component" routerLinkActive="active">Second Component</a>
     </div>
   </div>
 </nav>

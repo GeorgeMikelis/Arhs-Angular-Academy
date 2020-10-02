@@ -2,6 +2,10 @@
 <div class="row">
   <div class="col-xs-12 col-md-12 col-md-offset-1">
     <div class="row">
+
+      <router-outlet></router-outlet>
+
+      <hr>
       <app-movies-search
         (userInput)="handleInput($event)"
       ></app-movies-search>
