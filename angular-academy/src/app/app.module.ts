@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
+import { AuthUsersGuard } from './auth-users.guard';
 
 @NgModule({
   declarations: [
@@ -16,10 +17,10 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     MoviesModule,
     NgxPaginationModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   exports: [NgxPaginationModule, AppRoutingModule],
-  providers: [],
+  providers: [AuthUsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
