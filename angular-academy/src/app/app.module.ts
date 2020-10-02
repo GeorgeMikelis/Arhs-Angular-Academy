@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
@@ -18,6 +19,8 @@ import { AuthUsersGuard } from './auth-users.guard';
     MoviesModule,
     NgxPaginationModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [NgxPaginationModule, AppRoutingModule],
   providers: [AuthUsersGuard],

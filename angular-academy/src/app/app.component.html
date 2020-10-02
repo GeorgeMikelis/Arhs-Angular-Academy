@@ -2,14 +2,21 @@
 <div class="row">
   <div class="col-xs-12 col-md-12 col-md-offset-1">
     <div class="row">
-
       <router-outlet></router-outlet>
 
-      <hr>
+      <hr />
 
-      <!-- <app-movies-search
-        (userInput)="handleInput($event)"
-      ></app-movies-search> -->
+      <div class="row" style="margin: 10px">
+        <div class="col-md-3">
+          <label for="name">Name: </label>
+          <input type="text" [formControl]="name" />
+          <button class="btn btn-primary" (click)="updateName()">Update Name</button>
+          <p>Value: {{ name.value}}</p>
+        </div>
+      </div>
+
+      <hr />
+      <app-movies-search (userInput)="handleInput($event)"></app-movies-search>
 
       <div class="col-md-4">
         <hr />
@@ -24,7 +31,6 @@
           [criteria]="{ featured: true }"
           (movieToDetails)="selectMovie($event)"
         ></app-movies-list>
-
       </div>
       <div class="col-md-5">
         <app-movie-details [movieDetails]="selectedMovie"></app-movie-details>

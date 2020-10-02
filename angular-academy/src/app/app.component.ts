@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { Movie } from './movies/movie';
 
@@ -21,5 +22,11 @@ export class AppComponent {
   selectMovie(movie: Movie) {
     console.log(movie);
     this.selectedMovie = movie;
+  }
+
+  name = new FormControl('');
+
+  updateName() {
+    this.name.setValue('George');
   }
 }
