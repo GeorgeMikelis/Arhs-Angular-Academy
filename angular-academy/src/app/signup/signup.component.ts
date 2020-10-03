@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -8,13 +7,21 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
-    username: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    role: new FormControl('')
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4)
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
+    password: new FormControl('', [
+      Validators.required
+    ]),
+    role: new FormControl('', [
+      Validators.required
+    ])
   });
-
-  constructor(private router: Router,) {}
 
   ngOnInit(): void {
   }
