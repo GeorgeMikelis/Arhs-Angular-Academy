@@ -1,1 +1,61 @@
-<p>signup works!</p>
+<div class="row" style="margin: 10px">
+  <div class="col-md-3">
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          formControlName="username"
+          type="text"
+          id="username"
+          class="form-control"
+          name="username"
+          required
+         >
+         <!-- <span class="help-block" *ngIf="">Please enter a username with at least 4 characters</span> -->
+
+        <label for="email">E-Mail</label>
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          required
+         >
+       <!-- <span class="help-block" *ngIf="">Please enter a valid email! For example: "something@something.com"</span> -->
+
+         <label for="password">Password</label>
+         <input
+         formControlName="password"
+         type="password"
+         id="password"
+         class="form-control"
+         name="password"
+         required
+         >
+         <!-- <span class="help-block" *ngIf="">The Password must have both uppercasde and lowercase characters</span> -->
+
+         <label for="role">Role</label>
+         <select
+          formControlName="role"
+          name="roel"
+          id="role"
+          class="form-control"
+          required
+          >
+          <option selected disabled value="selRole">Select Role</option>
+          <option value="guest">Guest</option>
+          <option value="admin">Administrator</option>
+        </select>
+        <!-- <span class="help-block" *ngIf="">Please give a role!</span> -->
+
+      </div>
+
+        <div>
+            <button class="btn btn-primary" type="submit">SignUp</button>
+        </div>
+    </form>
+
+  </div>
+</div>
