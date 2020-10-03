@@ -8,11 +8,13 @@ import { MoviesModule } from './movies/movies.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { AuthUsersGuard } from './auth-users.guard';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

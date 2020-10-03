@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthUsersGuard } from './auth-users.guard';
-import { FirstComponentComponent } from './movies/test-components/first-component.component';
+import { Test1Component } from './movies/test-components/test1.component';
 import { SecondComponentComponent } from './movies/test-components/second-component.component';
 
 const routes: Routes = [
   {
-    path: 'first-component',
-    component: FirstComponentComponent,
+    path: 'test1-component',
+    component: Test1Component,
     pathMatch: 'prefix'
   },
   {

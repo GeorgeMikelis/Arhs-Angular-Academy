@@ -3,9 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-first-component',
-  templateUrl: './first-component.component.html'
+  templateUrl: './test1.component.html'
 })
-export class FirstComponentComponent implements OnInit {
+export class Test1Component implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
