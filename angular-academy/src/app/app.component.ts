@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Movie } from './movies/movie';
@@ -8,9 +8,10 @@ import { Movie } from './movies/movie';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular-academy';
   movieSearchValue: string;
+  date;
 
   selectedMovie: Movie;
 
@@ -26,7 +27,14 @@ export class AppComponent {
 
   name = new FormControl('');
 
+
   updateName() {
     this.name.setValue('George');
+  }
+
+  ngOnInit() {
+    setInterval(() =>{
+      this.date = new Date
+    } ,1000)
   }
 }
