@@ -25,6 +25,11 @@ export class SignupComponent implements OnInit {
     ])
   });
 
+  get username() { return this.signupForm.get('username'); }
+  get email() { return this.signupForm.get('email'); }
+  get password() { return this.signupForm.get('password'); }
+  get role() { return this.signupForm.get('role'); }
+
   ngOnInit(): void {
   }
 

@@ -12,7 +12,7 @@
           name="username"
           required
          >
-         <!-- <span class="help-block" *ngIf="">Please enter a username with at least 4 characters</span> -->
+         <span class="help-block" *ngIf="username.invalid && (username.dirty || username.touched)">Please enter a username with at least 4 characters</span>
 
         <label for="email">E-Mail</label>
         <input
@@ -23,7 +23,7 @@
           name="email"
           required
          >
-       <!-- <span class="help-block" *ngIf="">Please enter a valid email! For example: "something@something.com"</span> -->
+       <span class="help-block" *ngIf="email.invalid && (email.dirty || email.touched)">Please enter a valid email! For example: "something@something.com"</span>
 
          <label for="password">Password</label>
          <input
@@ -34,7 +34,7 @@
          name="password"
          required
          >
-         <!-- <span class="help-block" *ngIf="">The Password must have both uppercasde and lowercase characters</span> -->
+         <span class="help-block" *ngIf="password.invalid && (password.dirty || password.touched)">Please enter a password with both uppercasde and lowercase characters</span>
 
          <label for="role">Role</label>
          <select
@@ -48,7 +48,7 @@
           <option value="guest">Guest</option>
           <option value="admin">Administrator</option>
         </select>
-        <!-- <span class="help-block" *ngIf="">Please give a role!</span> -->
+        <span class="help-block" *ngIf="role.invalid && (role.dirty || role.touched)">Please give a role!</span>
 
       </div>
 
