@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { bothUpperCaseLowerCaseValidator } from './bothUppperCaseLowerCaseValidator';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,8 @@ export class SignupComponent implements OnInit {
       Validators.email
     ]),
     password: new FormControl('', [
-      Validators.required
+      Validators.required,
+      bothUpperCaseLowerCaseValidator()
     ]),
     role: new FormControl('', [
       Validators.required
