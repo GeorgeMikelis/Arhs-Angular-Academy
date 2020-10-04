@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { MoviesService } from '../movies.service';
 import { Movie } from '../movie';
 import { Criteria } from '../criteria';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-movies-list',
@@ -14,6 +15,8 @@ export class MoviesListComponent implements OnInit, OnChanges {
   selectedMovie: Movie;
   movies: Movie[];
   p: number = 1;
+
+  select = new FormControl('Order by');
 
   constructor(private movService: MoviesService) {}
 
@@ -52,5 +55,10 @@ export class MoviesListComponent implements OnInit, OnChanges {
   emitSelectedMovie(movie: Movie) {
     this.selectedMovie = movie;
     this.movieToDetails.emit(movie)
+  }
+
+  onOrderSelectionChange(selection: string) {
+    console.log(selection);
+    this.movService.getMoviesSortedBy(selection, this.movies);
   }
 }

@@ -24,7 +24,7 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [NgxPaginationModule, AppRoutingModule],
+  exports: [NgxPaginationModule, AppRoutingModule, ReactiveFormsModule],
   providers: [AuthUsersGuard],
   bootstrap: [AppComponent]
 })

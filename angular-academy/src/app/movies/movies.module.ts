@@ -7,6 +7,7 @@ import { MovieItemComponent } from './movies-list/movie-item/movie-item.componen
 import { MoviesSearchComponent } from './movies-search/movies-search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Test1Component } from './test-components/test1.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { Test1Component } from './test-components/test1.component';
     MoviesSearchComponent,
     Test1Component,
   ],
-  imports: [CommonModule, NgxPaginationModule],
+  imports: [CommonModule, NgxPaginationModule, ReactiveFormsModule],
   providers: [],
   exports: [
     MoviesListComponent,

@@ -4,11 +4,12 @@
   </div>
   <div class="col-md-5">
     <div class="form-group">
-      <select class="form-control" name="oder" id="order">
-        <option selected disabled value="date">Order By</option>
+      <select [formControl]="select" (change)="onOrderSelectionChange(select.value)" class="form-control" name="oder" id="order">
+        <option selected disabled value="Order by">Order By</option>
         <option value="date">Date Order</option>
         <option value="alphabetical">Alphabetical Order</option>
       </select>
+      <h4 *ngIf="!(select.value === 'Order by')">Ordered by: {{ select.value }}</h4>
     </div>
   </div>
 </div>
