@@ -1,7 +1,14 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
-export function bothUpperCaseLowerCaseValidator(): ValidatorFn {
-  return (control : AbstractControl): {[key: string]: any} | null => {
-    return control.value === control.value.toUpperCase() || control.value === control.value.toLowerCase() ? {hasNotBothUpperCaseLowerCase: {value: control.value}}: null;
+export function bothUpperCaseLowerCaseValidator(
+  control: AbstractControl
+): { [key: string]: boolean } | null {
+  if (
+    control.value === control.value.toUpperCase() ||
+    control.value === control.value.toLowerCase()
+  ) {
+    return { hasNotBothUpperCaseLowerCase: true };
+  } else {
+    return null;
   }
 }

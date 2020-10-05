@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     ]),
     password: new FormControl('', [
       Validators.required,
-      bothUpperCaseLowerCaseValidator()
+      bothUpperCaseLowerCaseValidator
     ]),
     role: new FormControl('', [
       Validators.required
