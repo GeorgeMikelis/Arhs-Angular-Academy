@@ -18,7 +18,7 @@ const routes: Routes = [
     pathMatch: 'prefix'
   },
   {
-    path: 'second-component/:id',
+    path: 'second-component',
     component: SecondComponentComponent,
     pathMatch: 'prefix',
     canActivate: [AuthUsersGuard],
