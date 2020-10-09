@@ -20,6 +20,6 @@ export class ObservablesDataExchangeAComponent implements OnInit {
 
   changeData() {
     this.observableService.changeData({ name: 'George' });
-    // this.router.navigate(['/observables/data-exchange-b']);
+    this.router.navigate(['/observables/data-exchange-b']);
   }
 }

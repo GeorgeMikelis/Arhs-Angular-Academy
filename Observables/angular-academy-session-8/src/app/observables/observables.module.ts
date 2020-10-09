@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ObservablesRoutingModule } from './observables-routing.module';
 import { ObservablesTimerComponent } from './observables-timer/observables-timer.component';
 import { ObservablesStarterComponent } from './observables-starter/observables-starter.component';
+import { ObservablesExercise1Component } from './observables-exercise1/observables-exercise1.component';
+import { ObservablesExercise2Component } from './observables-exercise2/observables-exercise2.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ObservablesStarterComponent } from './observables-starter/observables-s
     ObservablesFormComponent,
     ObservablesTimerComponent,
     ObservablesStarterComponent,
+    ObservablesExercise1Component,
+    ObservablesExercise2Component,
   ],
   providers: [ObservablesService],
   imports: [
