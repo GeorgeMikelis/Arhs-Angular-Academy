@@ -8,13 +8,13 @@ import { FormControl } from "@angular/forms";
 })
 export class ObservablesExercise2Component implements OnInit {
   inputWithSuggestionProposition = new FormControl("");
-  words: string[] = require("an-array-of-english-words");
+  words: string[] = require("an-array-of-english-words"); //  https://github.com/words/an-array-of-english-words
   suggestions: string[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.words.filter((d) => /fun/.test(d)));
+    console.log(this.words.filter((d) => /fun/.test(d)));  //  Just to test the array
     this.inputWithSuggestionProposition.valueChanges.forEach(
       (value: string) => {
         this.suggestions.push(value);
