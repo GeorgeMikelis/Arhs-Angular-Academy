@@ -1,1 +1,6 @@
-<p>observables-exercise2 works!</p>
+<p>Start typing in the input field bellow. When you type 3 letters and more you will see suggested words if they are exist in the list!</p>
+<input
+[formControl]="inputWithSuggestionProposition" 
+type="text" >
+<p *ngIf="suggestions.length">Did you mean:</p>
+<p *ngFor="let sugestion of suggestions; let i = index">{{ suggestions[i] }}</p>
