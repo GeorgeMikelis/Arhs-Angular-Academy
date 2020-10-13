@@ -12,7 +12,7 @@
       (click)="movieSelected.emit(movie.title)"
       appMovieHighlighter
     >
-      <a (click)="edit(movie)">
+      <a (click)="edit(movie)" (click)="actorsCall(movie)">
         <span class="badge">{{ movie.id || -1 }}</span>
         <span *ngIf="movie !== editMovie">{{ movie.title }}</span>
         <input
@@ -27,4 +27,12 @@
       </button>
     </li>
   </ul>
+  <div *ngIf="actorsInMovie.length">
+    <h3 class="actors">Actors are:</h3>
+    <ul>
+      <li *ngFor="let actor of actorsInMovie">
+        {{ actor.name }}
+      </li>
+    </ul>
+  </div>
 </div>

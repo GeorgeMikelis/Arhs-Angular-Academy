@@ -1,5 +1,9 @@
 <article *ngIf="selectedMovieTitle">
-  <h2>Favourite movie:</h2>
+  <h2>Movie Details:</h2>
 
-  {{ selectedMovieTitle }}
+  <h4>{{ selectedMovieTitle }}</h4>
+  
+  <p>Actors are:</p>
+  <app-actors></app-actors>
+  
 </article>

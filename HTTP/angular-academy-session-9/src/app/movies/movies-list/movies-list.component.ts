@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { Actor } from '../actor';
 import { Movie } from '../movie';
 import { MoviesService } from '../movies.service';
 
@@ -15,6 +16,8 @@ import { MoviesService } from '../movies.service';
 })
 export class MoviesListComponent implements OnInit, OnChanges {
   movies: Movie[] = [];
+  actors: Actor[] = [];
+  actorsInMovie: Actor[] = [];
   editMovie: Movie; // the movie currently being edited
 
   @Output()
@@ -27,6 +30,18 @@ export class MoviesListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {}
+
+  actorsCall(movie: Movie) {
+    this.actorsInMovie = [];
+    console.log(movie);
+    this.actorsInMovie = this.actors.filter(actor => actor.movie === movie.title)
+    this.moviesService.getActors().subscribe(actors => {
+      this.actors = actors;
+      this.actorsInMovie = actors.filter(actor => actor.movie === movie.title)
+      console.log(this.actorsInMovie);
+      console.log(this.actors);
+    })
+  }
 
   getMovies(): void {
     this.moviesService

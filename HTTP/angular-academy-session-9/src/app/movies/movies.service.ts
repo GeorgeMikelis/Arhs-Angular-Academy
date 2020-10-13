@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, retry, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Actor } from './actor';
 import { Movie } from './movie';
 import { MovieDetails } from './movie-details';
 
@@ -17,6 +18,7 @@ import { MovieDetails } from './movie-details';
 export class MoviesService {
   //  private handleError: HandleError;
   moviesUrl = environment.config.api.url;
+  actorsUrl = environment.config.api.actorsUrl;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,6 +27,14 @@ export class MoviesService {
   };
 
   constructor(private http: HttpClient) {}
+
+  getActors(): Observable<Actor[]> {
+    return this.http.get<Actor[]>(this.actorsUrl).pipe(
+      tap(() => { console.log('actors called')} ),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
 
   /** GET Movies from the server */
   getMovies(): Observable<Movie[]> {

@@ -24,6 +24,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 11, name: 'Scarlett Johansson', age: 35, movie: 'Avengers' },
       { id: 12, name: 'Chris Evans', age: 39, movie: 'Avengers' }
     ];
-    return { movies };
+    return { movies, actors };
   }
 }

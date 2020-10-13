@@ -7,6 +7,7 @@ export const environment = {
   config: {
     api: {
       url: `api/movies`,
+      actorsUrl: 'api/actors'
     },
     omdbapi: {
       baseUrl: 'http://www.omdbapi.com/',
