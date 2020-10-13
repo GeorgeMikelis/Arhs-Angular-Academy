@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { LoggingInterceptor } from './interceptors/logging-interceptor';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
 import { ActorsComponent } from './actors/actors.component';
+import { CachingInterceptor } from './interceptors/caching-interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ActorsComponent } from './actors/actors.component';
   providers: [
     MoviesService,
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
   ],
   imports: [
     CommonModule,
