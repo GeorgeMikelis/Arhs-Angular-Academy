@@ -13,6 +13,7 @@ import { DownloadMoviesListComponent } from './download-movies-list/download-mov
 import { FormsModule } from '@angular/forms';
 import { LoggingInterceptor } from './interceptors/logging-interceptor';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
+import { ActorsComponent } from './actors/actors.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MovieSearchComponent } from './movie-search/movie-search.component';
     MoviesComponent,
     DownloadMoviesListComponent,
     MovieSearchComponent,
+    ActorsComponent,
   ],
   providers: [
     MoviesService,
