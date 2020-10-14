@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { MoviesService } from '../movies.service';
+import { UserInfo } from '../user-info';
 
 @Component({
   selector: "app-form",
@@ -14,11 +16,17 @@ export class FormComponent implements OnInit {
     password: new FormControl(""),
   });
 
-  constructor() {}
+  user: UserInfo;
+
+  constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.warn(this.form.value);
+    this.user = this.form.value
+    console.warn(this.user);
+    this.moviesService.sendUserInfo(this.user).subscribe(user => {
+      console.log(user);
+    })
   }
 }

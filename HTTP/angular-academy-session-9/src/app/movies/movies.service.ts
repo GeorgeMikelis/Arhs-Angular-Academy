@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 import { Actor } from './actor';
 import { Movie } from './movie';
 import { MovieDetails } from './movie-details';
+import { UserInfo } from './user-info';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class MoviesService {
   //  private handleError: HandleError;
   moviesUrl = environment.config.api.url;
   actorsUrl = environment.config.api.actorsUrl;
+  usersInfoUrl = environment.config.api.usersInfoUrl;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -28,9 +30,17 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
+  sendUserInfo(user): Observable<UserInfo> {
+    return this.http.post<UserInfo>(this.usersInfoUrl, user).pipe(
+      tap(() => {console.log(user)} ),
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
+
   getActors(): Observable<Actor[]> {
     return this.http.get<Actor[]>(this.actorsUrl).pipe(
-      tap(() => { console.log('actors called')} ),
+      tap(() => {console.log('actors called')} ),
       retry(3),
       catchError(this.handleError)
     )
