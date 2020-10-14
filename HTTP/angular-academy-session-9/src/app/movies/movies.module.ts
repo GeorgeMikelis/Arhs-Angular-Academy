@@ -10,11 +10,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MoviesService } from './movies.service';
 import { MoviesComponent } from './movies-container/movies.component';
 import { DownloadMoviesListComponent } from './download-movies-list/download-movies-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoggingInterceptor } from './interceptors/logging-interceptor';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
 import { ActorsComponent } from './actors/actors.component';
 import { CachingInterceptor } from './interceptors/caching-interceptor';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CachingInterceptor } from './interceptors/caching-interceptor';
     DownloadMoviesListComponent,
     MovieSearchComponent,
     ActorsComponent,
+    FormComponent,
   ],
   providers: [
     MoviesService,
@@ -33,6 +35,7 @@ import { CachingInterceptor } from './interceptors/caching-interceptor';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     MoviesRoutingModule,
     HttpClientModule,
