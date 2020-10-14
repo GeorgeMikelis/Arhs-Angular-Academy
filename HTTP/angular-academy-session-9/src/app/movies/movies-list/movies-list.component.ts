@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { Actor } from '../actor';
+import { ActorsDataService } from '../actors-data.service';
 import { Movie } from '../movie';
 import { MoviesService } from '../movies.service';
 
@@ -16,14 +17,13 @@ import { MoviesService } from '../movies.service';
 })
 export class MoviesListComponent implements OnInit, OnChanges {
   movies: Movie[] = [];
-  actors: Actor[] = [];
   actorsInMovie: Actor[] = [];
   editMovie: Movie; // the movie currently being edited
 
   @Output()
   movieSelected = new EventEmitter();
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService, private actorsDataService: ActorsDataService) {}
 
   ngOnInit(): void {
     this.getMovies();
@@ -34,12 +34,13 @@ export class MoviesListComponent implements OnInit, OnChanges {
   actorsCall(movie: Movie) {
     this.actorsInMovie = [];
     console.log(movie);
-    this.actorsInMovie = this.actors.filter(actor => actor.movie === movie.title)
+    console.log(this.actorsDataService.actors);
+    this.actorsInMovie = this.actorsDataService.actors.filter(actor => actor.movie === movie.title);
     this.moviesService.getActors().subscribe(actors => {
-      this.actors = actors;
-      this.actorsInMovie = actors.filter(actor => actor.movie === movie.title)
+      this.actorsDataService.actors = actors;
+      this.actorsInMovie = actors.filter(actor => actor.movie === movie.title);
       console.log(this.actorsInMovie);
-      console.log(this.actors);
+      console.log(this.actorsDataService.actors);
     })
   }
 
