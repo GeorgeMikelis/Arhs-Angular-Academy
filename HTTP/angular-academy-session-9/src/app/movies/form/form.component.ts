@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
   });
 
   user: UserInfo;
+  hideFormWhenSignedUP: boolean = false;
 
   constructor(private moviesService: MoviesService) {}
 
@@ -27,6 +28,10 @@ export class FormComponent implements OnInit {
     console.warn(this.user);
     this.moviesService.sendUserInfo(this.user).subscribe((user) => {
       console.log(user);
+      this.hideFormWhenSignedUP = true;
     });
+    this.moviesService.getUsers().subscribe(users => {
+      console.log(users);
+    })
   }
 }

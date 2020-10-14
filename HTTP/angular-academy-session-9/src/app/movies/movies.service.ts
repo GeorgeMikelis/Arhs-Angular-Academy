@@ -39,6 +39,13 @@ export class MoviesService {
     )
   }
 
+  getUsers(): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>(this.usersInfoUrl).pipe(
+      retry(3),
+      catchError(this.handleError)
+    )
+  }
+
   getActors(): Observable<Actor[]> {
     return this.http.get<Actor[]>(this.actorsUrl).pipe(
       tap(() => {console.log('actors called')} ),
