@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { MoviesService } from '../movies.service';
-import { UserInfo } from '../user-info';
+import { MoviesService } from "../movies.service";
+import { UserInfo } from "../user-info";
 
 @Component({
   selector: "app-form",
@@ -23,10 +23,10 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.user = this.form.value
+    this.user = this.form.value;
     console.warn(this.user);
-    this.moviesService.sendUserInfo(this.user).subscribe(user => {
+    this.moviesService.sendUserInfo(this.user).subscribe((user) => {
       console.log(user);
-    })
+    });
   }
 }

@@ -30,8 +30,9 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  sendUserInfo(user): Observable<UserInfo> {
-    return this.http.post<UserInfo>(this.usersInfoUrl, user).pipe(
+  sendUserInfo(user: UserInfo): Observable<UserInfo> {
+    console.log(user);
+    return this.http.post<UserInfo>(this.usersInfoUrl, user, this.httpOptions).pipe(
       tap(() => {console.log(user)} ),
       retry(3),
       catchError(this.handleError)
