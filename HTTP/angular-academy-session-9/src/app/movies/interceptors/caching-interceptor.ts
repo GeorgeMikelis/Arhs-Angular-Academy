@@ -3,19 +3,39 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
+  HttpEvent,
+  HttpResponse,
 } from "@angular/common/http";
-import { EMPTY } from 'rxjs';
+
 
 import { ActorsDataService } from "../actors-data.service";
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
-  constructor(private actorsDataService: ActorsDataService) {}
+  constructor(private cache: ActorsDataService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (this.actorsDataService.actors.length) {
-      return EMPTY;
+    const cachedResponse = this.cache.get(req);
+    if (cachedResponse) {
+      console.log('request was prevented from firing because data are in cache')
+      console.log(cachedResponse);
     }
-    return next.handle(req);
+    return cachedResponse ? of(cachedResponse) : this.sendRequest(req, next, this.cache);
+  }
+
+  sendRequest(
+    req: HttpRequest<any>,
+    next: HttpHandler,
+    cache: ActorsDataService): Observable<HttpEvent<any>> {
+    return next.handle(req).pipe(
+      tap(event => {
+        if (event instanceof HttpResponse) {
+          cache.put(req, event);
+        }
+      })
+    );
   }
 }

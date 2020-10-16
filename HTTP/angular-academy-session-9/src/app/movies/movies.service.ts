@@ -46,8 +46,11 @@ export class MoviesService {
     )
   }
 
-  getActors(): Observable<Actor[]> {
-    return this.http.get<Actor[]>(this.actorsUrl).pipe(
+  getActors(title: string): Observable<Actor[]> {
+    if (!title.trim()) {
+      return of([]);
+    }
+    return this.http.get<Actor[]>(`${this.actorsUrl}/?movie=${title}`).pipe(
       tap(() => {console.log('actors called')} ),
       retry(3),
       catchError(this.handleError)

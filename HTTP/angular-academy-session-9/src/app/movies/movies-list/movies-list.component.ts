@@ -32,15 +32,12 @@ export class MoviesListComponent implements OnInit, OnChanges {
   ngOnChanges() {}
 
   actorsCall(movie: Movie) {
-    this.actorsInMovie = [];
-    console.log(movie);
-    console.log(this.actorsDataService.actors);
-    this.actorsInMovie = this.actorsDataService.actors.filter(actor => actor.movie === movie.title);
-    this.moviesService.getActors().subscribe(actors => {
-      this.actorsDataService.actors = actors;
-      this.actorsInMovie = actors.filter(actor => actor.movie === movie.title);
+    const title = movie.title
+    this.moviesService.getActors(title).subscribe(actors => {
+      console.log(actors);
+      this.actorsInMovie = actors;
+      // this.actorsInMovie = actors.filter(actor => actor.movie === movie.title);
       console.log(this.actorsInMovie);
-      console.log(this.actorsDataService.actors);
     })
   }
 

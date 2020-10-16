@@ -13,10 +13,10 @@ export class ActorsComponent implements OnInit {
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.moviesService.getActors().subscribe(actors => {
-      this.actors = actors;
-      console.log(this.actors);
-    })
+    // this.moviesService.getActors().subscribe(actors => {
+    //   this.actors = actors;
+    //   console.log(this.actors);
+    // })
   }
 
 }

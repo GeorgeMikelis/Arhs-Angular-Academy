@@ -27,7 +27,7 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const usersInfo: UserInfo[] = [
-      { id: 1, name: 'George', lastname: 'Mikelis', username: 'bestProgrammerEver', password: 'test'},
+      { id: 1, name: 'George', lastname: 'Mikelis', username: 'g.mikelis', password: 'test'},
     ];
 
     return { movies, actors, usersInfo };
