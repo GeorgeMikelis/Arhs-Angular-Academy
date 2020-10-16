@@ -1,16 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store'
 
 import { AppComponent } from './app.component';
-import { MoviesListComponent } from './movies-list/movies-list.component';
+import { MoviesModule } from './movies/movies.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { moviesReducer } from './movies/store/movies.reducer';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MoviesListComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MoviesModule, 
+    StoreModule.forRoot({
+      movies: moviesReducer
+    }),
+    StoreDevtoolsModule.instrument({})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { deleteMovie } from '../store/movies.actions';
 
 @Component({
   selector: 'app-movies-list',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoviesListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
 
+  deleteMovie() {
+    const deleteMovieObj = deleteMovie()
+    this.store.dispatch(deleteMovieObj);
+  }
 }
