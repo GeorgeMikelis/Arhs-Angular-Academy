@@ -5,7 +5,6 @@ import { StoreModule } from '@ngrx/store'
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { moviesReducer } from './movies/store/movies.reducer';
 import * as fromApp from './store/app.reducer';
 
 
