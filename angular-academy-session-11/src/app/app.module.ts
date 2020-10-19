@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { moviesReducer } from './movies/store/movies.reducer';
+import * as fromApp from './store/app.reducer';
 
 
 @NgModule({
@@ -15,9 +16,7 @@ import { moviesReducer } from './movies/store/movies.reducer';
   imports: [
     BrowserModule,
     MoviesModule, 
-    StoreModule.forRoot({
-      movies: moviesReducer
-    }),
+    StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({})
   ],
   providers: [],

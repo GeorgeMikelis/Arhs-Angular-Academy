@@ -1,1 +1,3 @@
-<p (click)="deleteMovie()">movies-list works!</p>
+<p (click)="deleteMovie()">Movie title</p>
+<div
+*ngFor="let movie of (movieList | async).movies"></div>

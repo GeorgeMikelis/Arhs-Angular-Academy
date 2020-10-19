@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { deleteMovie } from '../store/movies.actions';
+import { Observable } from 'rxjs';
+
+import { Movie } from '../movie';
+import * as MoviesActions from "../store/movies.actions";
+import * as fromApp from '../store/movies.reducer';
 
 @Component({
   selector: 'app-movies-list',
@@ -8,14 +12,14 @@ import { deleteMovie } from '../store/movies.actions';
   styleUrls: ['./movies-list.component.css']
 })
 export class MoviesListComponent implements OnInit {
+  movieList: Observable<{ movies: Movie[] }>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store<fromApp.State>) {}
 
   ngOnInit(): void {
+    this.movieList = this.store.select('movies');
   }
 
   deleteMovie() {
-    const deleteMovieObj = deleteMovie()
-    this.store.dispatch(deleteMovieObj);
   }
 }
