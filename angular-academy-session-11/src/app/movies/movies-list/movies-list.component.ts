@@ -12,7 +12,7 @@ import * as fromApp from '../store/movies.reducer';
   styleUrls: ['./movies-list.component.css']
 })
 export class MoviesListComponent implements OnInit {
-  movieList: Observable<{ movies: Movie[] }>;
+  movieList: Observable<{ movieList: Movie[] }>;
 
   constructor(private store: Store<fromApp.State>) {}
 
