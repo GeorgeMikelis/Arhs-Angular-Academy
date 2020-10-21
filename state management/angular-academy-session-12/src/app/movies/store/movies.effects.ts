@@ -3,22 +3,17 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, Observable, of } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { MoviesService } from '../movies.service';
-import {
-  fetchMovies,
-  fetchMoviesError,
-  fetchMoviesSuccess,
-  searchMovies,
-} from './movies.actions';
+import * as MoviesActions from '../store/movies.actions';
 
 @Injectable()
 export class MovieEffects {
   loadMovies$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fetchMovies),
+      ofType(MoviesActions.fetchMovies),
       switchMap(() =>
         this.moviesService.fetchMovies().pipe(
-          map((movies) => fetchMoviesSuccess({ movies })),
-          catchError(() => of(fetchMoviesError()))
+          map((movies) => MoviesActions.fetchMoviesSuccess({ movies })),
+          catchError(() => of(MoviesActions.fetchMoviesError()))
         )
       )
     )
@@ -26,14 +21,16 @@ export class MovieEffects {
 
   searchMovies$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(searchMovies),
+      ofType(MoviesActions.searchMovies),
       switchMap(({ title }) =>
         this.moviesService
           .searchMovies(title)
-          .pipe(map((movies) => fetchMoviesSuccess({ movies })))
+          .pipe(map((movies) => MoviesActions.fetchMoviesSuccess({ movies })))
       )
     )
   );
+
+  
 
   constructor(
     private actions$: Actions,

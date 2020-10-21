@@ -1,8 +1,47 @@
 <input type="text" [(ngModel)]="searchTerm" />
 <button (click)="searchMovies(searchTerm)">search</button>
 
-<div *ngFor="let movie of movies$ | async" (click)="deleteMovie(movie.title)">
+<input type="text" [(ngModel)]="movieTitle" />
+<button (click)="createMovie(movieTitle)">Create</button>
+
+<div *ngFor="let movie of movies$ | async" (click)="crossMovie(movie.title)">
   <span [style]="movie.deleted ? { 'text-decoration': 'line-through' } : null">
     {{ movie.title }}
   </span>
+</div>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies$ | async">
+        <td>{{ movie.title }}</td>
+        <td>
+          <button (click)="showUpdateForm(movie)"  style="margin: 5px">Update</button>
+          <button (click)="deleteMovie(movie.title)" style="margin: 5px">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="isUpdateActivated" style="margin-top: 50px; margin-left: 50px;">
+    <h4>Update Course</h4>
+    <form (ngSubmit)="updateMovie(updateForm)" #updateForm="ngForm">
+      <div>
+        <label for="name">Movie Title</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          [(ngModel)]="movieToBeUpdated.title"
+          style="width: 400px"/>
+      </div>
+      <button [disabled]="updateForm.invalid" type="submit">Update</button>
+    </form>
+  </div>
 </div>

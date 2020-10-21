@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Movie } from '../movie';
-import { deleteMovie, fetchMoviesSuccess } from './movies.actions';
+import { crossMovie, fetchMoviesSuccess } from './movies.actions';
 
 export interface State {
   items: Movie[];
@@ -22,7 +22,7 @@ export const moviesReducer = createReducer(
     };
   }),
 
-  on(deleteMovie, (state, { movieTitle }) => {
+  on(crossMovie, (state, { movieTitle }) => {
     return {
       ...state,
       items: state.items.map((item) => {
