@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, Observable, of } from 'rxjs';
-import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
-import { MoviesService } from '../movies.service';
-import * as MoviesActions from '../store/movies.actions';
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { EMPTY, Observable, of } from "rxjs";
+import { map, mergeMap, catchError, switchMap } from "rxjs/operators";
+import { MoviesService } from "../movies.service";
+import * as MoviesActions from "../store/movies.actions";
 
 @Injectable()
 export class MovieEffects {
@@ -30,7 +30,29 @@ export class MovieEffects {
     )
   );
 
-  
+  updateMovie$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MoviesActions.updateMovie),
+      switchMap(({ title, newTitle }) =>
+        this.moviesService.updateMovie(title, newTitle).pipe(
+          map((movies) => MoviesActions.fetchMoviesSuccess({ movies })),
+          catchError(() => of(MoviesActions.fetchMoviesError()))
+        )
+      )
+    )
+  );
+
+  deleteMovie$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MoviesActions.deleteMovie),
+      switchMap((title) =>
+        this.moviesService.deleteMovie(title).pipe(
+          map((movies) => MoviesActions.fetchMoviesSuccess({ movies })),
+          catchError(() => of(MoviesActions.fetchMoviesError()))
+        )
+      )
+    )
+  );
 
   constructor(
     private actions$: Actions,

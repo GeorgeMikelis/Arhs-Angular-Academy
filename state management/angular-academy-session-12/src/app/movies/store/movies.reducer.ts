@@ -16,6 +16,7 @@ export const moviesReducer = createReducer(
   initState,
   on(fetchMoviesSuccess, (state, { movies }) => {
     // The items property was missing below that's why we were getting an error
+    console.log('reducer for fetch')
     return {
       ...state,
       items: movies,

@@ -51,6 +51,7 @@ export class MoviesListComponent implements OnInit {
   }
 
   deleteMovie(movieTitle: string) {
+    this.store.dispatch(MoviesActions.deleteMovie({movieTitle}))
   }
 
   searchMovies(searchTerm: string) {

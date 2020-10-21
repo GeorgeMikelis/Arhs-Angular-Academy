@@ -11,6 +11,11 @@ export const fetchMoviesSuccess = createAction(
 export const fetchMoviesError = createAction('[Movies] fetch error');
 
 export const crossMovie = createAction(
+  '[Movies] Cross',
+  props<{ movieTitle: string }>()
+);
+
+export const deleteMovie = createAction(
   '[Movies] Delete',
   props<{ movieTitle: string }>()
 );
